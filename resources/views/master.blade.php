@@ -59,12 +59,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('contact') }}">Contact us</a>
               </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{ url('register') }}">Register</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{ url('login') }}">Login</a>--}}
-{{--                </li>--}}
+
 
             </ul>
 
