@@ -16,9 +16,6 @@ class ProductsController extends Controller
         $products = products::all();
 
         return view('admin.products.index', compact('products'));
-        foreach ($products as $product) {
-            echo $products->name . "\n";
-        }
 
     }
 

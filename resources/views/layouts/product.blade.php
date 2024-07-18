@@ -15,11 +15,13 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="orange-text">Related</span> Products</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                        <h3 style="padding-top: 100px"><span class="orange-text">Related</span> Products</h3>
+                        <p>Welcome To Our Products</p>
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
             <div class="row">
                 @foreach($products as $product)
                 <div class="col-lg-4 col-md-6 text-center">

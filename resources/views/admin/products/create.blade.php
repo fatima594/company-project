@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Add Product</h1>
+    <h1 style="text-align: center ; padding-top: 100px">Add Product</h1>
 
     @if ($errors->any())
         <div class="error">
@@ -46,7 +46,7 @@
         <button type="submit">Add Product</button>
 
 
-        <a href="{{ route('admin.index') }}">Back to Products List</a>
+        <a href="{{ route('products.index') }}">Back to Products List</a>
 
     </form>
 
