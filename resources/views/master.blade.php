@@ -59,20 +59,22 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('contact') }}">Contact us</a>
               </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('register') }}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('login') }}">Login</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{ url('register') }}">Register</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="{{ url('login') }}">Login</a>--}}
+{{--                </li>--}}
 
             </ul>
 
             <div class="search_icon">
               <ul>
-                <li><a href="#"><img src="images/user-icon.png"></a></li>
-                <li><a href="#"><img src="images/bag-icon.png"></a></li>
-                <li><a href="#"><img src="images/search-icon.png"></a></li>
+
+                  <li  class="nav-item"><a class="nav-link" href="{{ url('register') }}">Register</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a>
+                  </li>
               </ul>
             </div>
           </div>
