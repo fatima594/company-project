@@ -1,38 +1,50 @@
 @extends('master')
 
 @section('content')
-<!-- product section start -->
 
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+    <!-- more products -->
 
-    <div class="">
-      <div class="container">
-        <h2 style="text-align: center ; padding-top: 100px" class="tariffs_text">Our Products</h2>
-        <h1 class="choose_text">Choose your plan</h1>
-          <figure>
-              <a style="max-width: 10px  !important;" href="single.html"><img src="{{('images/chmp.webp')}}" alt="Image" class="img-responsive"></a>
-          </figure>
-{{--        <p class="lorem_text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum, est ac faucibus hendrerit, mauris ante viverra urna, in elementum urna est ut ligula.</p>--}}
-{{--        <div class="product_section2">--}}
-{{--          <div class="row">--}}
-{{--            <div class="col-lg-4 col-sm-12">--}}
-{{--              <h2 class="easy_text">BUTTERFLY WATERPROOF</h2>--}}
-{{--              <h1 class="internet_text">Maskara</h1>--}}
-{{--              <div class="month_main clearfix">--}}
-{{--                <h1 class="dolor_text">$9.99</h1>--}}
-{{--                <h2 class="month_text">Month</h2>--}}
-{{--                <p class="long_text">It is a long established f--}}
-{{--                act distracteontent </p>--}}
-              </div>
-
-              </div>
+    <div class="more-products mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text">Related</span> Products</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="row">
+                @foreach($products as $product)
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 100px; max-height: 100px;"></a>
+                        </div>
+                        <br>
+                        <h3>{{ $product->name }}</h3>
+                        <p class="product-price"><span>$</span>{{ $product->price }} </p>
+
+                        <p class="product-price"><span></span>{{ $product->description }} </p>
+
+                        <a href="cart.html" class="cart-btn alert-warning"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
         </div>
-      </div>
+
     </div>
+    </body>
+    </html>
 
 
-
-    <!-- product section end -->
 
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,13 +13,20 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('admin.products.index', compact('products' ));
+        $products = products::all();
+
+        return view('admin.products.index', compact('products'));
+        foreach ($products as $product) {
+            echo $products->name . "\n";
+        }
+
     }
 
 
 
-    /**
+
+
+/**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -46,7 +53,7 @@ class ProductsController extends Controller
             $data['image'] = $imagePath;
         }
 
-        Product::create($data);
+        products::create($data);
         return redirect()->route('products.index');
     }
 
@@ -56,7 +63,7 @@ class ProductsController extends Controller
      */
     public function show(string $id)
     {
-        $products = Product::findOrFail($id);
+        $products = products::findOrFail($id);
         return view('admin.products.show', compact('products'));
     }
 
@@ -65,7 +72,7 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        $products = Product::findOrFail($id);
+        $products = products::findOrFail($id);
         return view('admin.products.edit', compact('products'));
     }
 
@@ -81,7 +88,7 @@ class ProductsController extends Controller
             'image' => 'nullable|image',
         ]);
 
-        $products = Product::findOrFail($id);
+        $products = products::findOrFail($id);
         $data = $request->all();
 
         if ($request->hasFile('image')) {
@@ -104,7 +111,7 @@ class ProductsController extends Controller
      */
     public function destroy(string $id)
     {
-        $products = Product::findOrFail($id);
+        $products = products::findOrFail($id);
 
         // حذف الصورة إذا كانت موجودة
         if ($products->image) {

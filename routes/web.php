@@ -3,11 +3,11 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
+use  \App\Models\products;
 
 
 Route::get('/', function () {
@@ -19,7 +19,8 @@ Route::get('/about', function () {
     return view('layouts.about');
 });
 Route::get('/product', function () {
-    return view('layouts.product');
+    $products = products::all();
+    return view('layouts.product', ['products' => $products]);
 });
 
 
