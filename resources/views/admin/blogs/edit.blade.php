@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1>Edit Product</h1>
+        <h1>Edit blog</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -15,37 +15,33 @@
             </div>
         @endif
 
-        <form action="{{ route('products.update', $products->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') <!-- هنا نضع الطريقة الصحيحة -->
 
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $products->name) }}" required>
+                <label for="title">title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $blog->title) }}" required>
             </div>
 
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ old('price', $products->price) }}" required>
-            </div>
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea class="form-control" id="description" name="description">{{ old('description', $products->description) }}</textarea>
+                <textarea class="form-control" id="description" name="description">{{ old('description', $blog->description) }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="image">Image:</label>
                 <input type="file" class="form-control" id="image" name="image">
-                @if ($products->image)
+                @if ($blog->image)
                     <p>Current Image:</p>
-                    <img src="{{ asset('storage/products/' . $products->image) }}" alt="Product Image" style="max-width: 170px;">
+                    <img src="{{ asset('storage/images/' . $blog->image) }}" alt="blog Image" style="max-width: 170px;">
                 @else
                     <p>No image available</p>
                 @endif
             </div>
 
-            <button style="margin-top: 20px" type="submit" class="btn btn-primary">Update Product</button>
+            <button style="margin-top: 20px" type="submit" class="btn btn-primary">Update blog</button>
         </form>
     </div>
 

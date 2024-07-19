@@ -27,7 +27,7 @@
                 <div class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a href="single-product.html"><img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 300px; max-height: 300px !important;"></a>
+                            <a href="single-product.html"><img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 300px; max-height: 300px !important;"></a>
                         </div>
                         <br>
                         <h3>{{ $product->name }}</h3>
@@ -35,7 +35,7 @@
 
                         <p class="product-price"><span></span>{{ $product->description }} </p>
 
-                        <a href="cart.html" class="cart-btn alert-warning"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <a href="/cart" class="cart-btn alert-warning"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                     </div>
                     <br>
                     <br>

@@ -24,7 +24,7 @@
                     <td>{{ $product->description }}</td>
                     <td>
                         @if ($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 25px;">
+                            <img src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 25px;">
                         @else
                             No Image
                         @endif
@@ -50,10 +50,8 @@
 
 
 <style>
-    @extends('layout')
 
-@section('content')
-<style>
+
     .container {
         margin-top: 20px;
     }
@@ -128,8 +126,7 @@
         color: #ffffff;
     }
 
-    .btn-danger:hover {
-        bac
+
 
 
 

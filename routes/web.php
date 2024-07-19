@@ -2,10 +2,12 @@
 
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscribeController;
+use App\Models\Blogs;
 use Illuminate\Support\Facades\Route;
 use  \App\Models\products;
 
@@ -23,13 +25,14 @@ Route::get('/product', function () {
     return view('layouts.product', ['products' => $products]);
 });
 
+Route::get('/blog', function () {
+    $blogs = blogs::all();
+    return view('layouts.blog', ['blogs' => $blogs]);
+});
+
 
 Route::get('/contact', function () {
     return view('layouts.contact');
-});
-
-Route::get('/blog', function () {
-    return view('layouts.blog');
 });
 
 Route::get('/readabout', function () {
@@ -52,6 +55,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 
 Route::resource('products', ProductsController::class);
+Route::resource('blogs', BlogController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -68,5 +72,12 @@ Route::middleware('auth')->group(callback: function () {
 Route::get('/post', function () {
     return view('post');
 });
+
+
+//Route::get('/cart', function () {
+//    $products = products::all();
+//    return view('layouts.cart.index', ['cart' => $products]);
+//});
+
 
 require __DIR__.'/auth.php';

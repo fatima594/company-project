@@ -1,4 +1,4 @@
-<!-- show.blade.php -->
+
 
 @extends('layout')
 
@@ -6,26 +6,23 @@
     <div class="container">
         <h1 style="text-align: center ; margin-bottom: 100px">Product Details</h1>
 
-        @if ($products)
+        @if ($blogs)
             <table class="table">
                 <tbody>
                 <tr>
-                    <th>Name:</th>
-                    <td>{{ $products->name }}</td>
+                    <th>title:</th>
+                    <td>{{ $blogs->title }}</td>
                 </tr>
+
                 <tr>
-                    <th>Price:</th>
-                    <td>${{ $products->price }}</td>
-                </tr>
-                <tr>
-                    <th>Description:</th>
-                    <td>{{ $products->description }}</td>
+                    <th>description:</th>
+                    <td>{{ $blogs->description }}</td>
                 </tr>
                 <tr>
                     <th>Image:</th>
                     <td>
-                        @if ($products->image)
-                            <img src="{{ asset('storage/products/' . $products->image) }}" alt="{{ $products->name }}" class="product-image">
+                        @if ($blogs->image)
+                            <img src="{{ asset('storage/images/' . $blogs->image) }}" alt="{{ $blogs->title }}" class="blog-image">
                         @else
                             <p>No image available</p>
                         @endif
@@ -36,7 +33,7 @@
 
 
         @else
-            <p>Product not found.</p>
+            <p>blog not found.</p>
         @endif
     </div>
 

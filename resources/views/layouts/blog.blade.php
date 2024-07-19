@@ -2,66 +2,55 @@
 
 @section('content')
 
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+    <!-- more products -->
 
-
-
-</div>
-<!-- END #fh5co-offcanvas -->
-<header id="fh5co-header">
-
-    <div class="container-fluid">
-
-        <div class="row">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <ul class="fh5co-social">
-                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-instagram"></i></a></li>
-            </ul>
-            <div style="padding-top: 100px " class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo"><a href="index.html">blogs <sup>TM</sup></a></h1>
+    <div class="more-products mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3 style="padding-top: 100px"><span class="orange-text">Related</span> Products</h3>
+                        <p>Welcome To Our Products</p>
+                    </div>
+                </div>
             </div>
+            <br>
+            <br>
+            <div class="row">
+                @foreach($blogs as $blog)
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="single-product.html"><img src="{{ asset('storage/images/' . $blog->image) }}" alt="{{ $blog->title }}" style="max-width: 300px; max-height: 300px !important;"></a>
+                            </div>
+                            <br>
+                            <h3>{{ $blog->title }}</h3>
 
+                            <p class="product-price"><span></span>{{ $blog->description }} </p>
+                            <div class="read_bt1"><a href="{{ url('readabout') }}">Read More</a></div>
+
+
+
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                @endforeach
+
+            </div>
         </div>
 
     </div>
+    </body>
+    </html>
 
-</header>
-<!-- END #fh5co-header -->
-<div style="margin: 200px ;padding: 100px  " class="container-fluid">
-    <div class="row fh5co-post-entry">
-        <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-            <figure>
-                <a href="single.html"><img src="{{('images/chmp.webp')}}" alt="Image" class="img-responsive"></a>
-            </figure>
-            <span class="fh5co-meta"><a href="single.html">Food &amp; Drink</a></span>
-            <h2 class="fh5co-article-title"><a href="single.html">We Eat and Drink All Night</a></h2>
-            <span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-        </article>
-        <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
-            <figure>
-                <a href="single.html"><img src="{{('images/msk.webp')}}" alt="Image" class="img-responsive"></a>
-            </figure>
-            <span class="fh5co-meta"><a href="single.html">Food &amp; Drink</a></span>
-            <h2 class="fh5co-article-title"><a href="single.html">Beef Steak at Guatian Restaurant</a></h2>
-            <span class="fh5co-meta fh5co-date">March 6th, 2016</span>
-        </article>
-        <div class="clearfix visible-xs-block"></div>
-
-
-        <div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-
-
-        <div class="clearfix visible-xs-block"></div>
-
-
-        <div style="padding: 100px" class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-
-
-
-
-    </div>
-</div>
 
 
 @endsection

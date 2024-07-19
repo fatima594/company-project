@@ -1,121 +1,101 @@
 <?php
+// app/Http/Controllers/ProductController.php
 
 namespace App\Http\Controllers;
 
-use App\Models\products;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // عرض قائمة المنتجات
     public function index()
     {
         $products = products::all();
-
         return view('admin.products.index', compact('products'));
-
     }
 
-
-
-
-
-/**
-     * Show the form for creating a new resource.
-     */
+    // عرض نموذج إضافة منتج جديد
     public function create()
     {
         return view('admin.products.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // تخزين منتج جديد
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'description' => 'nullable',
-            'image' => 'nullable|image|',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
-        $data = $request->all();
+        $products = new Products();
+        $products->name = $request->name;
+        $products->description = $request->description;
+        $products->price = $request->price;
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
-            $data['image'] = $imagePath;
+            $products->image = basename($imagePath);
         }
 
-        products::create($data);
-        return redirect()->route('products.index');
+        $products->save();
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    // عرض نموذج تعديل منتج
+    public function edit($id)
     {
-        $products = products::findOrFail($id);
-        return view('admin.products.show', compact('products'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $products = products::findOrFail($id);
+        $products = Products::findOrFail($id);
         return view('admin.products.edit', compact('products'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    // تحديث منتج
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'description' => 'nullable',
-            'image' => 'nullable|image',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
-        $products = products::findOrFail($id);
-        $data = $request->all();
+        $products = Products::findOrFail($id);
+        $products->name = $request->name;
+        $products->description = $request->description;
+        $products->price = $request->price;
 
         if ($request->hasFile('image')) {
-            // حذف الصورة القديمة إذا كانت موجودة
-            if ($products->image) {
-                Storage::disk('public')->delete($products->image);
-            }
-
             $imagePath = $request->file('image')->store('products', 'public');
-            $data['image'] = $imagePath;
+            $products->image = basename($imagePath);
         }
 
-        $products->update($data);
-        return redirect()->route('products.index');
+        $products->save();
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // عرض تفاصيل منتج
+    public function show($id)
     {
-        $products = products::findOrFail($id);
+        $products = Products::findOrFail($id);
+        return view('admin.products.show', compact('products'));
+    }
 
-        // حذف الصورة إذا كانت موجودة
+    // حذف منتج
+    public function destroy($id)
+    {
+        $products = Products::findOrFail($id);
         if ($products->image) {
-            Storage::disk('public')->delete($products->image);
+            // حذف الصورة من التخزين إذا كانت موجودة
+            Storage::delete('products/' . $products->image);
         }
-
         $products->delete();
-        return redirect()->route('admin.products.index');
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }
