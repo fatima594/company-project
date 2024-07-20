@@ -1,16 +1,13 @@
 <?php
 
-
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscribeController;
-use App\Models\Blogs;
 use Illuminate\Support\Facades\Route;
-use  \App\Models\products;
-
+use App\Models\products;
+use  App\Models\blogs;
 
 Route::get('/', function () {
     return view(view: 'home');
@@ -45,39 +42,19 @@ Route::post('/subscribes', [SubscribeController::class, 'store'])->name('subscri
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-//
-//
-//Route::get('/contact', function () {
-//    return view('layouts.contact');
-//});
-//
-
-
 
 Route::resource('products', ProductsController::class);
 Route::resource('blogs', BlogController::class);
+//
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::middleware('auth')->group(callback: function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::delete('/auth', [RegisteredUserController::class, 'destroy'])->name('auth.create');
-
 });
-Route::get('/post', function () {
-    return view('post');
-});
-
-
-//Route::get('/cart', function () {
-//    $products = products::all();
-//    return view('layouts.cart.index', ['cart' => $products]);
-//});
-
 
 require __DIR__.'/auth.php';

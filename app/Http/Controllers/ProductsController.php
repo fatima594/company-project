@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductsController extends Controller
 {
     // عرض قائمة المنتجات
-    public function index()
+    public function index() :string
     {
         $products = products::all();
         return view('admin.products.index', compact('products'));

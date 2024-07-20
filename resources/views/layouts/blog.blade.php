@@ -9,6 +9,9 @@
     </head>
     <body>
     <!-- more products -->
+    @if($blogs->isEmpty())
+        <p>No blogs available.</p>
+    @else
 
     <div class="more-products mb-150">
         <div class="container">
@@ -48,6 +51,7 @@
         </div>
 
     </div>
+    @endif
     </body>
     </html>
 
